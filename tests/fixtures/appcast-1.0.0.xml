@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>Zabbix Toolbar</title>
+    <link>https://alexmontoanelli.github.io/zabbix-toolbar-releases/appcast.xml</link>
+    <language>en</language>
+    <item>
+      <title>Version 1.0.0</title>
+      <pubDate>Thu, 01 Oct 2026 18:16:57 GMT</pubDate>
+      <sparkle:version>2</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<h3>Zabbix Toolbar 1.0.0</h3>
+<p>First public release.</p>
+<ul><li>Menu bar icon with the active problems of all your Zabbix servers (6.0 to 7.x), notifications for new problems, compact and extended lists, host group filter and an Overview in Settings.</li><li>Free plan: one monitored server with the full problem list and notifications.</li><li>Pro plan (monthly or yearly subscription, up to 2 Macs): unlimited servers, acknowledge, close and change severity in Zabbix, snooze, minimum severity and alerts per severity.</li><li>Signed and notarized by Apple, with automatic updates (Settings → General → Updates).</li><li>Server tokens and passwords stored in the macOS Keychain.</li><li>English interface with Brazilian Portuguese available.</li></ul>
+<p>Upgrading from a 0.1 test build: macOS asks for notification permission again, and &quot;Open at login&quot; must be turned on again in Settings → General.</p>]]></description>
+      <enclosure url="https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases/download/v1.0.0/ZabbixToolbar-1.0.0.dmg" sparkle:edSignature="3Gzn6ow1eQ1HJyOl/Ap4e+P7xLBy7rgd3l0TPA9U56f9bEOAsCQtzNN51/FQm1eZtY45ZjCo1HO9wfwQ5MY+Dg==" length="2718491" type="application/octet-stream"/>
+    </item>
+  </channel>
+</rss>

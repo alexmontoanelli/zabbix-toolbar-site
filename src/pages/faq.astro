@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqList from '../components/sections/FaqList.astro';
+import { faq } from '../data/faq';
+import { site } from '../data/site';
+import { faqPageLd } from '../lib/jsonld';
+---
+<Base title="FAQ" description="Answers about Zabbix versions, privacy, licenses, refunds and updates for Zabbix Toolbar." jsonLd={faqPageLd(faq)}>
+  <section class="container section">
+    <div class="section-title">
+      <p class="eyebrow">FAQ</p>
+      <h1>Frequently asked questions</h1>
+    </div>
+    <FaqList items={faq} />
+    <p class="more muted">Still stuck? Check the <a href="/docs/troubleshooting/">troubleshooting guide</a> or <a href={site.links.support}>open an issue</a>.</p>
+  </section>
+</Base>
+
+<style>
+  .more { text-align: center; margin-top: 28px; }
+</style>

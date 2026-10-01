@@ -1,0 +1,57 @@
+---
+import '../../styles/mockups.css';
+import Glyph from './Glyph.astro';
+import { severityLabel, severityVar, type DemoProblem } from '../../data/demo';
+
+interface Props { problem: DemoProblem; density: 'compact' | 'extended'; isNew?: boolean; highlighted?: boolean }
+const { problem, density, isNew = false, highlighted = false } = Astro.props;
+const hosts = problem.hosts.join(', ');
+const compactTitle = hosts ? `${hosts} — ${problem.name}` : problem.name;
+---
+<div class:list={['mk-row', density, { seen: problem.seen, 'is-new': isNew, highlighted }]} style={`--sev:${severityVar[problem.severity]}`}>
+  <span class="bar"></span>
+  {density === 'compact' ? (
+    <>
+      <span class="title">{compactTitle}</span>
+      <span class="dur">{problem.duration}</span>
+    </>
+  ) : (
+    <div class="body">
+      <div class="name">{problem.name}</div>
+      <div class="meta">
+        {hosts && <span class="host">{hosts}</span>}
+        {hosts && <span>·</span>}
+        <span>{severityLabel[problem.severity]}</span><span>·</span>
+        <span>{problem.started}</span><span>·</span>
+        <span>{problem.duration}</span>
+        {problem.ackedInZabbix && <Glyph name="seal" />}
+      </div>
+      {problem.groups.length > 0 && <div class="tags">{problem.groups.map((group) => <span class="tag">{group}</span>)}</div>}
+    </div>
+  )}
+  {!problem.seen && <span class="check"><Glyph name="check" /></span>}
+</div>
+
+<style>
+  .mk-row { position: relative; display: flex; gap: 8px; padding: 5px 6px; border-radius: 6px; overflow: hidden; }
+  .mk-row::after { content: ''; position: absolute; inset: 0; background: var(--mk-blue); opacity: 0; pointer-events: none; mix-blend-mode: normal; }
+  .mk-row.is-new::after { background: color-mix(in srgb, var(--sev) 22%, transparent); }
+  .mk-row.highlighted { background: rgba(127, 127, 127, 0.16); }
+  .compact { align-items: center; }
+  .extended { align-items: flex-start; }
+  .seen { opacity: 0.45; }
+  .bar { width: 4px; border-radius: 2px; background: var(--sev); align-self: stretch; flex: none; }
+  .compact .bar { height: 14px; align-self: center; }
+  .title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px; }
+  .dur { color: var(--mk-text-2); font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .body { flex: 1; min-width: 0; display: grid; gap: 2px; }
+  .name { font-size: 13px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 0 5px; align-items: center; color: var(--mk-text-2); font-size: 11px; }
+  .host { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 10.5px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; padding-top: 2px; }
+  .tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; background: var(--mk-tag); color: var(--mk-text-2); white-space: nowrap; }
+  .check { color: var(--mk-text-2); font-size: 15px; display: inline-flex; flex: none; }
+  @container (max-width: 420px) {
+    .extended .meta span:nth-child(n + 4) { display: none; }
+  }
+</style>

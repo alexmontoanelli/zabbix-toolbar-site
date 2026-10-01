@@ -1,0 +1,13 @@
+---
+const items = ['Zabbix 6.0, 6.4, 7.0 and 7.2+', 'API token or username & password', 'Self-signed certificates', 'Signed & notarized by Apple', 'Automatic updates'];
+---
+<section class="compat" aria-label="Compatibility">
+  <ul class="container">{items.map((item) => <li>{item}</li>)}</ul>
+</section>
+
+<style>
+  .compat { border-block: 1px solid var(--line); background: var(--bg-sunken); }
+  ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; list-style: none; margin: 0 auto; padding-block: 18px; }
+  li { font: 500 0.85rem var(--font-mono); color: var(--text-2); }
+  li::before { content: '✓'; color: var(--accent); margin-right: 8px; font-weight: 700; }
+</style>

@@ -1,0 +1,26 @@
+---
+interface Props { title: string; eyebrow?: string; pro?: boolean; reverse?: boolean; id?: string; mockupLabel: string }
+const { title, eyebrow, pro = false, reverse = false, id, mockupLabel } = Astro.props;
+---
+<article class:list={['feature', { reverse }]} id={id}>
+  <div class="text">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h3>{title} {pro && <span class="pro-badge">PRO</span>}</h3>
+    <slot />
+  </div>
+  <div class="visual" role="img" aria-label={mockupLabel}><slot name="mockup" /></div>
+</article>
+
+<style>
+  .feature { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: center; }
+  .feature + .feature { margin-top: clamp(64px, 9vw, 112px); }
+  .reverse .text { order: 2; }
+  @media (max-width: 900px) {
+    .feature { grid-template-columns: 1fr; gap: 28px; }
+    .reverse .text { order: 0; }
+  }
+  h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700; }
+  .text :global(p) { color: var(--text-2); }
+  .visual { display: flex; justify-content: center; padding: 28px; background: var(--mk-desktop); border-radius: 18px; min-width: 0; }
+  @media (max-width: 480px) { .visual { padding: 14px; } }
+</style>

@@ -1,0 +1,8 @@
+---
+interface Props { to: number; from?: number }
+const { to, from } = Astro.props;
+const show = (n: number) => (n > 99 ? '99+' : String(n));
+---
+{from === undefined || from === to
+  ? <span>{show(to)}</span>
+  : <span class="mk-swap"><span class="mk-swap-from">{show(from)}</span><span class="mk-swap-to">{show(to)}</span></span>}

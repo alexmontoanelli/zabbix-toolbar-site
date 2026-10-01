@@ -1,0 +1,35 @@
+---
+import '../../styles/mockups.css';
+import Glyph from './Glyph.astro';
+---
+<div class="mk snooze" aria-hidden="true">
+  <div class="menu">
+    <div class="mi">Acknowledge in Zabbix…</div>
+    <div class="mi on">Snooze <Glyph name="chevron" /></div>
+    <div class="mi">Mark as seen</div>
+    <div class="sep"></div>
+    <div class="mi">Open in Zabbix</div>
+  </div>
+  <div class="menu sub">
+    <div class="mi">1 hour</div>
+    <div class="mi on">4 hours</div>
+    <div class="mi">Until 8 AM tomorrow</div>
+    <div class="sep"></div>
+    <div class="mi">Custom…</div>
+  </div>
+</div>
+
+<style>
+  .snooze { position: relative; display: flex; align-items: flex-start; width: min(100%, 400px); }
+  .menu {
+    min-width: 200px; padding: 5px; border-radius: 9px;
+    background: var(--mk-popover); box-shadow: var(--mk-shadow);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  }
+  .sub { min-width: 170px; margin: 30px 0 0 -6px; }
+  .mi { display: flex; align-items: center; justify-content: space-between; padding: 4px 10px; border-radius: 5px; font-size: 13px; white-space: nowrap; }
+  .mi.on { background: var(--mk-blue); color: #fff; }
+  .mi :global(.mk-glyph) { width: 10px; height: 10px; }
+  .sep { height: 1px; margin: 5px 8px; background: var(--mk-line); }
+  @container (max-width: 400px) { .menu { min-width: 0; } .sub { margin-left: -40px; } }
+</style>

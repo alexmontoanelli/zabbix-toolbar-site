@@ -1,0 +1,32 @@
+---
+import '../../styles/mockups.css';
+---
+<div class="mk ack" aria-hidden="true">
+  <div class="headline">Acknowledge in Zabbix</div>
+  <div class="problem">High CPU utilization (over 90% for 5m)</div>
+  <div class="field">Rolling back the 14:20 deploy — Ana</div>
+  <label class="row"><span class="toggle on"></span> Acknowledge</label>
+  <label class="row"><span class="toggle"></span> Close problem</label>
+  <div class="row between">Change severity <span class="popup">Keep ⌄</span></div>
+  <div class="buttons"><span class="b">Cancel</span><span class="b primary">Apply</span></div>
+</div>
+
+<style>
+  .ack {
+    width: 100%; max-width: 340px; padding: 16px; display: grid; gap: 12px;
+    background: var(--mk-popover); border-radius: 12px; box-shadow: var(--mk-shadow);
+  }
+  .headline { font-weight: 700; font-size: 14px; }
+  .problem { color: var(--mk-text-2); }
+  .field { background: var(--mk-control); border: 1px solid var(--mk-line); border-radius: 6px; padding: 6px 8px; min-height: 58px; }
+  .row { display: flex; align-items: center; gap: 8px; }
+  .between { justify-content: space-between; }
+  .toggle { width: 26px; height: 15px; border-radius: 999px; background: rgba(127, 127, 127, 0.35); position: relative; flex: none; }
+  .toggle::after { content: ''; position: absolute; top: 1.5px; left: 1.5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+  .toggle.on { background: var(--mk-blue); }
+  .toggle.on::after { left: 12.5px; }
+  .popup { background: var(--mk-control); border: 1px solid var(--mk-line); border-radius: 5px; padding: 1px 8px; }
+  .buttons { display: flex; justify-content: flex-end; gap: 8px; }
+  .b { padding: 3px 12px; border-radius: 6px; background: var(--mk-control); border: 1px solid var(--mk-line); }
+  .b.primary { background: var(--mk-blue); border-color: var(--mk-blue); color: #fff; }
+</style>

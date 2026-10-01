@@ -1,0 +1,29 @@
+---
+import '../../styles/mockups.css';
+import Glyph from './Glyph.astro';
+import ZIcon from './ZIcon.astro';
+
+interface Props { count: number; countFrom?: number }
+const { count, countFrom } = Astro.props;
+---
+<div class="mk mk-menubar" aria-hidden="true">
+  <span class="item active"><ZIcon state="alert" count={count} countFrom={countFrom} /></span>
+  <span class="item"><Glyph name="wifi" /></span>
+  <span class="item"><Glyph name="battery" /></span>
+  <span class="item clock">Thu Oct 1 2:32 PM</span>
+</div>
+
+<style>
+  .mk-menubar {
+    display: flex; justify-content: flex-end; align-items: center; gap: 2px;
+    height: 28px; padding: 0 10px;
+    background: var(--mk-menubar);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px 10px 0 0;
+    font-size: 13px; font-weight: 500;
+  }
+  .item { display: inline-flex; align-items: center; padding: 3px 7px; border-radius: 5px; }
+  .item.active { background: rgba(127, 127, 127, 0.22); }
+  .item :global(.mk-glyph) { width: 15px; height: 15px; }
+  @container (max-width: 380px) { .clock { display: none; } }
+</style>

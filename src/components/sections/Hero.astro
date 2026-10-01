@@ -1,0 +1,47 @@
+---
+import MenuBar from '../mockups/MenuBar.astro';
+import ProblemList from '../mockups/ProblemList.astro';
+import { demoServers, newProblem, totalActive } from '../../data/demo';
+import { site } from '../../data/site';
+import { formatSize, type AppcastRelease } from '../../lib/appcast';
+
+interface Props { release: AppcastRelease | null }
+const { release } = Astro.props;
+const servers = demoServers.map((server, index) => (index === 0 ? { ...server, problems: [newProblem, ...server.problems] } : server));
+const facts = [release && `v${release.version}`, release?.size && formatSize(release.size), 'Notarized by Apple'].filter(Boolean).join(' · ');
+---
+<section class="hero">
+  <div class="container grid">
+    <div class="copy">
+      <p class="eyebrow">For Zabbix 6.0 – 7.x · macOS 14+</p>
+      <h1>Your Zabbix problems, one click away in the menu bar.</h1>
+      <p class="lede">
+        Zabbix Toolbar watches your Zabbix servers and puts every active problem in your Mac’s menu bar —
+        with native notifications, quick acknowledgements and nothing to install on the server.
+      </p>
+      <div class="ctas">
+        <a class="btn btn-primary btn-lg" href={site.links.download}>Download for Mac — free</a>
+        <a class="btn btn-secondary btn-lg" href="/#pricing">Get Pro</a>
+      </div>
+      <p class="muted facts">{facts}</p>
+    </div>
+    <div class="stage" role="img" aria-label="The Zabbix Toolbar menu bar icon showing 5 problems, with the problem list open: a new High severity problem appears at the top of the Production server.">
+      <div class="desktop">
+        <MenuBar count={totalActive(servers)} countFrom={totalActive(demoServers)} />
+        <div class="pop"><ProblemList servers={servers} density="extended" newProblemId={newProblem.id} /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding: clamp(40px, 7vw, 88px) 0 clamp(48px, 7vw, 96px); overflow: hidden; }
+  .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
+  @media (max-width: 960px) { .grid { grid-template-columns: 1fr; gap: 40px; } }
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 28px 0 14px; }
+  @media (max-width: 480px) { .ctas .btn { width: 100%; } }
+  .stage { --new-delay: 1.4s; }
+  .desktop { background: var(--mk-desktop); border-radius: 18px; padding: 0 0 28px; box-shadow: var(--shadow); }
+  .pop { display: flex; justify-content: flex-end; padding: 8px 14px 0; }
+  @media (max-width: 480px) { .pop { padding: 8px 8px 0; } .desktop { padding-bottom: 12px; } }
+</style>

@@ -1,0 +1,29 @@
+---
+const points = [
+  { title: 'Credentials in the Keychain', body: 'API tokens and passwords are stored in the macOS Keychain, never in plain files.' },
+  { title: 'Straight to your Zabbix', body: 'The app talks directly to your servers. Addresses, hosts and problems never leave your Mac.' },
+  { title: 'Anonymous, optional stats', body: 'A few anonymous events help count active installs. Turn them off in Settings → General → Privacy.' },
+];
+---
+<section class="section privacy">
+  <div class="container">
+    <div class="section-title">
+      <p class="eyebrow">Privacy</p>
+      <h2>Your monitoring data stays on your Mac.</h2>
+    </div>
+    <ul class="points">
+      {points.map((point) => <li><h3>{point.title}</h3><p>{point.body}</p></li>)}
+    </ul>
+    <p class="more"><a href="/privacy/">Read the privacy policy →</a></p>
+  </div>
+</section>
+
+<style>
+  .privacy { background: var(--bg-sunken); }
+  .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; list-style: none; padding: 0; margin: 0; }
+  @media (max-width: 860px) { .points { grid-template-columns: 1fr; } }
+  li { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  li h3 { font-size: 1.1rem; }
+  li p { margin: 0; color: var(--text-2); }
+  .more { text-align: center; margin-top: 28px; }
+</style>

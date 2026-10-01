@@ -1,0 +1,73 @@
+---
+import '../../styles/mockups.css';
+import Glyph from './Glyph.astro';
+import { severityLabel, severityOrder, severityVar, type Severity } from '../../data/demo';
+
+const alerts: Record<Severity, { notify: boolean; sound: string }> = {
+  disaster: { notify: true, sound: 'Sosumi' },
+  high: { notify: true, sound: 'Funk' },
+  average: { notify: true, sound: 'Glass' },
+  warning: { notify: true, sound: 'None' },
+  information: { notify: false, sound: 'None' },
+  notClassified: { notify: false, sound: 'None' },
+};
+---
+<div class="mk win" aria-hidden="true">
+  <div class="titlebar"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span><span class="wt">General</span></div>
+  <div class="cols">
+    <aside class="side">
+      <div class="si"><Glyph name="overview" /> Overview <span class="badge">5</span></div>
+      <div class="si sel"><Glyph name="gear" /> General</div>
+      <div class="si"><Glyph name="key" /> License <span class="pro">PRO</span></div>
+      <div class="sh">Servers</div>
+      <div class="si"><Glyph name="server" /> Production</div>
+      <div class="si"><Glyph name="server" /> Staging</div>
+    </aside>
+    <div class="detail">
+      <div class="sec-title">Alerts</div>
+      <div class="group">
+        {severityOrder.map((severity) => (
+          <div class="ar">
+            <span class="dot" style={`background:${severityVar[severity]}`}></span>
+            <span class="sev">{severityLabel[severity]}</span>
+            <span class:list={['toggle', { on: alerts[severity].notify }]}></span>
+            <span class="popup">{alerts[severity].sound} ⌄</span>
+          </div>
+        ))}
+      </div>
+      <p class="foot">Applies to new problems from all servers. Plays a single sound per poll: the one for the highest severity.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .win { width: 100%; max-width: 640px; background: var(--mk-window); border-radius: 12px; box-shadow: var(--mk-shadow); overflow: hidden; }
+  .titlebar { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-bottom: 1px solid var(--mk-line); }
+  .tl { width: 12px; height: 12px; border-radius: 50%; }
+  .r { background: #ff5f57; } .y { background: #febc2e; } .g { background: #28c840; }
+  .wt { margin-left: 12px; font-weight: 700; }
+  .cols { display: grid; grid-template-columns: 180px 1fr; min-height: 300px; }
+  .side { background: var(--mk-sidebar); padding: 10px 8px; display: grid; align-content: start; gap: 2px; }
+  .si { display: flex; align-items: center; gap: 7px; padding: 4px 8px; border-radius: 6px; }
+  .si.sel { background: var(--mk-blue); color: #fff; }
+  .si :global(.mk-glyph) { width: 13px; height: 13px; }
+  .badge { margin-left: auto; font-size: 11px; color: var(--mk-text-2); }
+  .pro { margin-left: auto; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 999px; background: var(--mk-blue); color: #fff; }
+  .sh { font-size: 11px; font-weight: 700; color: var(--mk-text-2); padding: 10px 8px 2px; }
+  .detail { padding: 18px; }
+  .sec-title { font-weight: 700; margin-bottom: 8px; }
+  .group { background: var(--mk-control); border-radius: 8px; border: 1px solid var(--mk-line); }
+  .ar { display: grid; grid-template-columns: 10px 1fr auto auto; align-items: center; gap: 10px; padding: 7px 12px; }
+  .ar + .ar { border-top: 1px solid var(--mk-line); }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .toggle { width: 26px; height: 15px; border-radius: 999px; background: rgba(127, 127, 127, 0.35); position: relative; }
+  .toggle::after { content: ''; position: absolute; top: 1.5px; left: 1.5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+  .toggle.on { background: var(--mk-blue); }
+  .toggle.on::after { left: 12.5px; }
+  .popup { min-width: 74px; font-size: 12px; border: 1px solid var(--mk-line); border-radius: 5px; padding: 1px 8px; }
+  .foot { color: var(--mk-text-2); font-size: 11px; margin: 8px 2px 0; }
+  @container (max-width: 520px) {
+    .cols { grid-template-columns: 1fr; }
+    .side { display: none; }
+  }
+</style>

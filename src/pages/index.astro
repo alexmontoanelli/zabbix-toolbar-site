@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/sections/Hero.astro';
+import Compat from '../components/sections/Compat.astro';
+import Feature from '../components/sections/Feature.astro';
+import PrivacyBand from '../components/sections/PrivacyBand.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import FaqList from '../components/sections/FaqList.astro';
+import FinalCta from '../components/sections/FinalCta.astro';
+import ProblemList from '../components/mockups/ProblemList.astro';
+import SnoozeMenu from '../components/mockups/SnoozeMenu.astro';
+import AckPanel from '../components/mockups/AckPanel.astro';
+import SettingsWindow from '../components/mockups/SettingsWindow.astro';
+import { demoServers } from '../data/demo';
+import { faq } from '../data/faq';
+import { site } from '../data/site';
+import { latestRelease } from '../lib/appcast';
+import { softwareApplicationLd } from '../lib/jsonld';
+
+const release = await latestRelease();
+const production = demoServers.slice(0, 1);
+---
+<Base
+  title={site.name}
+  description="A native macOS menu bar app for Zabbix 6.x and 7.x: see active problems at a glance, get notified, acknowledge and snooze without opening the frontend."
+  jsonLd={softwareApplicationLd(release)}
+>
+  <Hero release={release} />
+  <Compat />
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow">Features</p>
+        <h2>Everything you need to react, nothing you don’t.</h2>
+      </div>
+
+      <Feature title="See everything at a glance" mockupLabel="Extended problem list with severity, host, start time, duration and host group tags.">
+        <p>A red Z with a count means something needs you. Open it for the full list — compact, one line per problem, or extended with severity, start time and host groups as tags.</p>
+        <p>Click any problem to open the event in Zabbix. Mark it as seen with ✓ and the count goes down.</p>
+        <ProblemList slot="mockup" servers={production} density="extended" />
+      </Feature>
+
+      <Feature title="Acknowledge without leaving your desk" pro reverse mockupLabel="The Acknowledge in Zabbix panel with a message, acknowledge and close toggles, and a change severity menu.">
+        <p>Right-click a problem to acknowledge it in Zabbix: add a message, close it when the trigger allows, change its severity or undo an acknowledgement.</p>
+        <p>Prefer one click? Set ✓ to acknowledge in Zabbix instead of marking as seen on this Mac.</p>
+        <AckPanel slot="mockup" />
+      </Feature>
+
+      <Feature title="Snooze the noise" pro mockupLabel="Right-click menu on a problem with the Snooze submenu open: 1 hour, 4 hours, until 8 AM tomorrow, or custom.">
+        <p>Already on it? Snooze a problem for 1 hour, 4 hours, until 8 AM or a custom time.</p>
+        <p>It moves to a collapsed Snoozed section and comes back on its own when the time is up.</p>
+        <SnoozeMenu slot="mockup" />
+      </Feature>
+
+      <Feature title="Alerts that match the severity" pro reverse mockupLabel="Settings window, General pane, Alerts section: a notification toggle and a sound for each severity.">
+        <p>Choose, per severity, whether to get a notification and which system sound plays. A disaster can sound like one; a warning can stay quiet.</p>
+        <p>One sound per poll — the one for the most severe new problem.</p>
+        <SettingsWindow slot="mockup" />
+      </Feature>
+
+      <Feature title="All your servers, filtered your way" mockupLabel="Compact problem list with Production and Staging servers.">
+        <p>Monitor production, staging and that one legacy box from the same icon. Ignore host groups you don’t care about and set a minimum severity per server.</p>
+        <p class="muted">Host group filtering is free. Multiple servers and minimum severity are part of Pro.</p>
+        <ProblemList slot="mockup" servers={demoServers} density="compact" highlightId="p2" />
+      </Feature>
+    </div>
+  </section>
+
+  <PrivacyBand />
+  <Pricing />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow">FAQ</p>
+        <h2>Questions, answered.</h2>
+      </div>
+      <FaqList items={faq.filter((item) => item.short)} />
+      <p class="all"><a href="/faq/">All questions →</a></p>
+    </div>
+  </section>
+
+  <FinalCta />
+</Base>
+
+<style>
+  .all { text-align: center; margin-top: 24px; }
+</style>

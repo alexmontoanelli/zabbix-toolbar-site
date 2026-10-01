@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zabbixtoolbar.montoanelli.com.br/sitemap-index.xml

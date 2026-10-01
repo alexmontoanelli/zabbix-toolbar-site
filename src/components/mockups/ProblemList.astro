@@ -1,0 +1,57 @@
+---
+import '../../styles/mockups.css';
+import Glyph from './Glyph.astro';
+import ProblemRow from './ProblemRow.astro';
+import Swap from './Swap.astro';
+import { activeCount, type DemoServer } from '../../data/demo';
+
+interface Props { servers: DemoServer[]; density: 'compact' | 'extended'; newProblemId?: string; highlightId?: string }
+const { servers, density, newProblemId, highlightId } = Astro.props;
+---
+<div class="mk mk-popover" aria-hidden="true">
+  <div class="header">
+    <strong>Zabbix</strong>
+    <span class="spacer"></span>
+    <Glyph name="list" /><Glyph name="refresh" /><Glyph name="gear" /><Glyph name="power" />
+  </div>
+  <div class="sections">
+    {servers.map((server) => {
+      const active = activeCount(server);
+      const hasNew = server.problems.some((problem) => problem.id === newProblemId);
+      return (
+        <section class:list={['server', density]}>
+          <div class="server-head">
+            <span class="server-name">{server.name}</span>
+            <span class="spacer"></span>
+            <span class:list={['capsule', { empty: active === 0 }]}><Swap to={active} from={hasNew ? active - 1 : undefined} /></span>
+          </div>
+          {server.problems.map((problem) => (
+            <ProblemRow problem={problem} density={density} isNew={problem.id === newProblemId} highlighted={problem.id === highlightId} />
+          ))}
+        </section>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .mk-popover {
+    width: 100%; max-width: 560px;
+    background: var(--mk-popover);
+    border-radius: 12px;
+    box-shadow: var(--mk-shadow);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    overflow: hidden;
+  }
+  .header { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--mk-line); color: var(--mk-text-2); }
+  .header strong { color: var(--mk-text); font-size: 13px; }
+  .header :global(.mk-glyph) { width: 14px; height: 14px; }
+  .spacer { flex: 1; }
+  .sections { padding: 10px 10px 12px; display: grid; gap: 14px; }
+  .server { display: grid; gap: 4px; }
+  .server.extended { gap: 6px; }
+  .server-head { display: flex; align-items: center; gap: 6px; padding: 0 6px; }
+  .server-name { font-weight: 700; font-size: 12px; }
+  .capsule { font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: var(--mk-red); color: #fff; font-variant-numeric: tabular-nums; }
+  .capsule.empty { background: rgba(127, 127, 127, 0.2); color: var(--mk-text); }
+</style>

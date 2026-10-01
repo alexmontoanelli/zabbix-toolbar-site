@@ -1,0 +1,43 @@
+---
+import { site } from '../data/site';
+
+const nav = [
+  { href: '/#features', label: 'Features' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/docs/', label: 'Docs' },
+  { href: '/faq/', label: 'FAQ' },
+];
+---
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="/">
+      <img src="/icon-64.png" width="28" height="28" alt="" />
+      <span>{site.name}</span>
+    </a>
+    <nav aria-label="Main">
+      <ul>{nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul>
+    </nav>
+    <a class="btn btn-primary btn-sm" href={site.links.download}>Download</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .inner { display: flex; align-items: center; gap: 24px; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font: 600 1.02rem var(--font-display); white-space: nowrap; }
+  .brand img { border-radius: 7px; }
+  nav { margin-left: auto; }
+  ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  nav a { color: var(--text-2); text-decoration: none; font-size: 0.95rem; }
+  nav a:hover { color: var(--text); }
+  @media (max-width: 640px) {
+    nav ul li:not(:nth-child(3)) { display: none; }
+    .inner { gap: 14px; }
+  }
+</style>
