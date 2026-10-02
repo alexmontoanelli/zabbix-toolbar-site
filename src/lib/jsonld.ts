@@ -1,8 +1,7 @@
 import { site } from '../data/site';
 import type { FaqItem } from '../data/faq';
-import { formatSize, type AppcastRelease } from './appcast';
 
-export function softwareApplicationLd(release: AppcastRelease | null): object {
+export function softwareApplicationLd(): object {
   const { pricing } = site;
   return {
     '@context': 'https://schema.org',
@@ -12,9 +11,8 @@ export function softwareApplicationLd(release: AppcastRelease | null): object {
     operatingSystem: 'macOS 14 or later',
     applicationCategory: 'DeveloperApplication',
     url: site.url,
-    downloadUrl: site.links.download,
-    ...(release && { softwareVersion: release.version }),
-    ...(release?.size && { fileSize: formatSize(release.size) }),
+    downloadUrl: site.links.appStore,
+    softwareVersion: site.version,
     offers: [
       { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: pricing.currency },
       { '@type': 'Offer', name: 'Pro (monthly)', price: pricing.monthly.amount, priceCurrency: pricing.currency },

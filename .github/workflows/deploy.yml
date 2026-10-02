@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '17 6 * * 1' # semanal: pega versão nova do appcast mesmo sem push
+    - cron: '17 6 * * 1' # semanal: rebuild de segurança
 
 permissions:
   contents: read

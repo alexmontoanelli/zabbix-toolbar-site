@@ -12,11 +12,13 @@ order: 1
 
 ## Install
 
-1. [Download the latest version](https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases/latest/download/ZabbixToolbar.dmg).
-2. Open the DMG and drag **Zabbix Toolbar** to **Applications**.
-3. Open it from Applications. The app is signed and notarized by Apple, so macOS opens it without warnings.
+1. Get Zabbix Toolbar from the [Mac App Store](https://apps.apple.com/app/id6818347240). It's free; Pro is an optional subscription.
+2. Open it from Launchpad or the Applications folder.
 
 A "Z" icon appears in the menu bar. There's no Dock icon — the app lives in the menu bar.
+
+Want to look around before connecting your own server? Add the demo server: Frontend URL
+`https://demo.zabbixtoolbar.montoanelli.com.br` with the API token `zbx-demo`. Its problems are simulated inside the app.
 
 ## Add your first server
 
@@ -31,7 +33,7 @@ The first time a new problem shows up, macOS asks for permission to show notific
 
 ## Start at login
 
-Turn on **Settings → General → Startup → Open at login**. The app must be in the Applications folder.
+Turn on **Settings → General → Startup → Open at login**.
 
 ## Language
 

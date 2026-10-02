@@ -13,12 +13,14 @@ interface Props {
   description: string;
   jsonLd?: object | object[];
   noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
-const { title, description, jsonLd, noindex = false } = Astro.props;
+const { title, description, jsonLd, noindex = false, ogImage: ogPath = '/og-image.png', ogType = 'website' } = Astro.props;
 const fullTitle = title === site.name ? `${site.name} — ${site.tagline}` : `${title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL('/og-image.png', Astro.site).href;
+const ogImage = new URL(ogPath, Astro.site).href;
 const ldBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 <!doctype html>
@@ -35,7 +37,7 @@ const ldBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />

@@ -7,7 +7,7 @@ effective: October 1, 2026
 
 This policy explains what data the Zabbix Toolbar app and the website zabbixtoolbar.montoanelli.com.br collect. Zabbix Toolbar is developed by Alex Montoanelli ("we").
 
-**In short:** nothing about your Zabbix servers ever leaves your Mac. The app sends a few anonymous usage events (you can turn them off), license checks to our store, and a daily update check. This website uses no cookies and no analytics.
+**In short:** nothing about your Zabbix servers ever leaves your Mac. The app sends a few anonymous usage events (you can turn them off), and purchases go through the App Store. This website uses no cookies and no analytics.
 
 ## Data that stays on your Mac
 
@@ -23,19 +23,17 @@ To count active installs, the app sends anonymous events to [Aptabase](https://a
 | `daily_active` | once per calendar day while the app is running |
 | `server_added` | when a new server is saved |
 
-Each event carries the plan (free, pro or internal), the number of servers in ranges (0, 1, 2–5, 6+) and the interface language. The Aptabase SDK adds the app version and build number, the macOS version, the system locale, the Mac model identifier (for example `Mac14,2`), whether it's a debug build, and a random session ID that is regenerated after a period of inactivity. There is no identifier that follows you across sessions, and never server URLs, hostnames, server names, problems, host groups or credentials. Like any web service, Aptabase receives your IP address with each request; see [Aptabase's privacy policy](https://aptabase.com/legal/privacy).
+Each event carries the plan (free or pro), the number of servers in ranges (0, 1, 2–5, 6+) and the interface language. The Aptabase SDK adds the app version and build number, the macOS version, the system locale, the Mac model identifier (for example `Mac14,2`), whether it's a debug build, and a random session ID that is regenerated after a period of inactivity. There is no identifier that follows you across sessions, and never server URLs, hostnames, server names, problems, host groups or credentials. Like any web service, Aptabase receives your IP address with each request; see [Aptabase's privacy policy](https://aptabase.com/legal/privacy).
 
 You can turn this off at any time in **Settings → General → Privacy → Share anonymous usage data**. When it's off, nothing is sent.
 
-## Licenses and payments
+## Purchases
 
-Pro subscriptions are sold by [Polar](https://polar.sh), which acts as merchant of record: Polar processes your payment, handles taxes and invoices, and stores your billing details under its own [privacy policy](https://polar.sh/legal/privacy). We receive from Polar your email address, your order and subscription status, and license activations.
+Zabbix Toolbar is distributed through the Mac App Store, and Pro subscriptions are sold by Apple. Apple processes your payment under its own [privacy policy](https://www.apple.com/legal/privacy/); we never see your payment details or your Apple ID. The app learns whether Pro is active by reading the App Store transaction records on your Mac, which Apple signs. Apple shares aggregated sales reports with us, not who you are.
 
-To check a Pro license, the app sends Polar the license key and this Mac's activation ID once a day, plus the Mac's name and the app version when activating, so you can tell your Macs apart in the customer portal. Nothing about your Zabbix servers is sent.
+## Updates
 
-## Update checks
-
-Once a day the app downloads a small file (`appcast.xml`) from GitHub Pages to see whether a new version exists; no information about your system is sent. Downloads of the app come from GitHub Releases. As with any website, GitHub may log your IP address; see the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+Updates are delivered by the Mac App Store. The app doesn't check for updates on its own.
 
 ## This website
 
@@ -47,7 +45,7 @@ Support happens through public GitHub issues. Anything you post there is public 
 
 ## Your rights
 
-Depending on where you live (for example, under Brazil's LGPD or the EU's GDPR), you may have the right to access, correct or delete your personal data. The only personal data related to the app is the billing data held by Polar: you can view and update it in the [customer portal](https://polar.sh/zabbixtoolbar/portal) or contact Polar's support. Usage events are anonymous and cannot be linked back to you. For any other question about this policy, [open an issue](https://github.com/alexmontoanelli/zabbix-toolbar-site/issues) without including personal data, and we will follow up.
+Depending on where you live (for example, under Brazil's LGPD or the EU's GDPR), you may have the right to access, correct or delete your personal data. We don't hold personal data about you: purchase and billing data are held by Apple, which you can manage in your Apple ID account and through [Apple's privacy page](https://www.apple.com/legal/privacy/). Usage events are anonymous and cannot be linked back to you. For any other question about this policy, [open an issue](https://github.com/alexmontoanelli/zabbix-toolbar-site/issues) without including personal data, and we will follow up.
 
 ## Changes
 

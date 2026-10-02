@@ -2,8 +2,8 @@
 import { site } from '../../data/site';
 
 const { pricing, links } = site;
-const free = ['1 Zabbix server', 'Full problem list, compact and extended', 'Notifications for new problems', 'Mark as seen, host group filter, Overview', 'Automatic updates'];
-const pro = ['Everything in Free', 'Unlimited servers', 'Acknowledge, close and change severity in Zabbix', 'Snooze problems', 'Minimum severity per server', 'Alerts and sounds per severity', `Up to ${pricing.maxMacs} Macs per license`, `Keeps working offline for ${pricing.offlineGraceDays} days`];
+const free = ['1 Zabbix server', 'Full problem list, compact and extended', 'Notifications for new problems', 'Mark as seen, host group filter, Overview', 'Updates through the App Store'];
+const pro = ['Everything in Free', 'Unlimited servers', 'Acknowledge, close and change severity in Zabbix', 'Snooze problems', 'Minimum severity per server', 'Alerts and sounds per severity', 'On all your Macs with the same Apple ID', 'Works offline'];
 ---
 <section class="section" id="pricing">
   <div class="container">
@@ -16,7 +16,7 @@ const pro = ['Everything in Free', 'Unlimited servers', 'Acknowledge, close and 
         <h3>Free</h3>
         <p class="price"><span class="amount">$0</span> <span class="per">forever</span></p>
         <ul>{free.map((item) => <li>{item}</li>)}</ul>
-        <a class="btn btn-secondary" href={links.download}>Download</a>
+        <a class="btn btn-secondary" href={links.appStore}>Download</a>
       </article>
       <article class="plan pro">
         <h3>Pro <span class="pro-badge">PRO</span></h3>
@@ -30,10 +30,12 @@ const pro = ['Everything in Free', 'Unlimited servers', 'Acknowledge, close and 
         <p class="price monthly"><span class="amount">{pricing.monthly.price}</span> <span class="per">per month</span></p>
         <p class="price yearly"><span class="amount">{pricing.yearly.price}</span> <span class="per">per year</span></p>
         <ul>{pro.map((item) => <li>{item}</li>)}</ul>
-        <a class="btn btn-primary" href={links.checkout}>Get Pro</a>
+        <p class="trial">{pricing.trialDays}-day free trial</p>
+        <a class="btn btn-primary" href={links.appStore}>Start free trial</a>
         <p class="muted note">
-          Choose monthly or yearly at checkout. Payments are handled by Polar. Already subscribed?{' '}
-          <a href={links.customerPortal}>Manage your subscription</a>.
+          Subscribe inside the app (Settings → Pro). Billed through your Apple ID; cancel anytime in your
+          App Store account. {pricing.note} Already subscribed?{' '}
+          <a href={links.manageSubscriptions}>Manage your subscription</a>.
         </p>
       </article>
     </div>
@@ -61,4 +63,6 @@ const pro = ['Everything in Free', 'Unlimited servers', 'Acknowledge, close and 
   .save { color: var(--accent-strong); font-weight: 600; font-size: 0.8rem; margin-left: 4px; }
   @media (prefers-color-scheme: dark) { .save { color: var(--link); } }
   .note { margin: 0; }
+  .trial { margin: 0; font-weight: 600; color: var(--accent-strong); }
+  @media (prefers-color-scheme: dark) { .trial { color: var(--link); } }
 </style>

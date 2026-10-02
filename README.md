@@ -6,7 +6,7 @@
 
 Zabbix Toolbar is a native macOS app that watches your Zabbix servers and puts every active problem in the menu bar, with native notifications, quick acknowledgements and nothing to install on the server.
 
-**[zabbixtoolbar.montoanelli.com.br](https://zabbixtoolbar.montoanelli.com.br)** · [Download](https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases/latest/download/ZabbixToolbar.dmg) · [Docs](https://zabbixtoolbar.montoanelli.com.br/docs/) · [FAQ](https://zabbixtoolbar.montoanelli.com.br/faq/) · [Changelog](https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases)
+**[zabbixtoolbar.montoanelli.com.br](https://zabbixtoolbar.montoanelli.com.br)** · [Mac App Store](https://apps.apple.com/app/id6818347240) · [Docs](https://zabbixtoolbar.montoanelli.com.br/docs/) · [FAQ](https://zabbixtoolbar.montoanelli.com.br/faq/) · [Changelog](https://apps.apple.com/app/id6818347240)
 
 ## Features
 
@@ -23,7 +23,7 @@ Zabbix Toolbar is a native macOS app that watches your Zabbix servers and puts e
 
 ## Free and Pro
 
-The Free plan monitors one server with the full problem list and notifications, with no time limit. Pro is $4.99/month or $49.90/year, works on up to 2 Macs, and adds the features marked above. See [pricing](https://zabbixtoolbar.montoanelli.com.br/#pricing).
+The Free plan monitors one server with the full problem list and notifications, with no time limit. Pro is an App Store subscription (monthly or yearly, with a 7-day free trial) that works on every Mac with your Apple ID and adds the features marked above. See [pricing](https://zabbixtoolbar.montoanelli.com.br/#pricing).
 
 ## Privacy
 
@@ -35,7 +35,7 @@ Found a bug or something wrong in the docs? [Open an issue](https://github.com/a
 
 ## About this repository
 
-This repository holds the source of the website (built with [Astro](https://astro.build) and published with GitHub Pages). The app itself is distributed as a signed and notarized DMG from [zabbix-toolbar-releases](https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases).
+This repository holds the source of the website (built with [Astro](https://astro.build) and published with GitHub Pages). The app itself is distributed through the [Mac App Store](https://apps.apple.com/app/id6818347240).
 
 ---
 

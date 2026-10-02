@@ -14,18 +14,16 @@ import SettingsWindow from '../components/mockups/SettingsWindow.astro';
 import { demoServers } from '../data/demo';
 import { faq } from '../data/faq';
 import { site } from '../data/site';
-import { latestRelease } from '../lib/appcast';
 import { softwareApplicationLd } from '../lib/jsonld';
 
-const release = await latestRelease();
 const production = demoServers.slice(0, 1);
 ---
 <Base
   title={site.name}
   description="A native macOS menu bar app for Zabbix 6.x and 7.x: see active problems at a glance, get notified, acknowledge and snooze without opening the frontend."
-  jsonLd={softwareApplicationLd(release)}
+  jsonLd={softwareApplicationLd()}
 >
-  <Hero release={release} />
+  <Hero />
   <Compat />
 
   <section class="section" id="features">

@@ -9,21 +9,21 @@ These terms apply to the Zabbix Toolbar app ("the app") and its Pro subscription
 
 ## License
 
-We grant you a personal, non-exclusive, non-transferable license to install and use the app on Macs you own or control, under the Free plan or, with an active subscription, the Pro plan. You may not copy, redistribute, resell, sublicense, reverse engineer or modify the app, or work around its license checks, except where the law expressly allows it.
+The app is licensed to you under Apple's [Licensed Application End User License Agreement](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) (the standard App Store EULA), together with these terms. If they conflict, the Apple EULA prevails for what it covers. You may not redistribute, resell or modify the app, or work around its subscription checks, except where the law expressly allows it.
 
 ## Free and Pro
 
-The Free plan is free of charge and monitors one Zabbix server. The Pro plan is a subscription, billed monthly or yearly, that unlocks the features described on our website. Each Pro license can be active on up to 2 Macs at the same time.
+The Free plan is free of charge and monitors one Zabbix server. The Pro plan is an auto-renewing subscription, billed monthly or yearly, that unlocks the features described on our website. New subscribers get a 7-day free trial. Pro is available on every Mac signed in with the same Apple ID.
 
 ## Purchases, renewals and refunds
 
-Subscriptions are sold through [Polar](https://polar.sh), our merchant of record. Polar processes payments, charges applicable taxes and handles refunds under its [terms](https://polar.sh/legal/terms). Subscriptions renew automatically at the end of each period until cancelled. You can cancel at any time in the [customer portal](https://polar.sh/zabbixtoolbar/portal); Pro stays active until the end of the period already paid for.
+Subscriptions are sold and billed by Apple through the App Store and charged to your Apple ID. They renew automatically unless cancelled at least 24 hours before the end of the current period. You can cancel or switch plans anytime in your App Store account; Pro stays active until the end of the period already paid for. Refunds are handled by Apple under its policies.
 
-Prices may change. Changes apply from your next renewal, and we'll announce them in advance.
+Prices may change. Apple notifies subscribers before a price increase takes effect.
 
-## License checks
+## When a subscription ends
 
-The app checks your Pro license with Polar once a day. If it can't reach the license server, Pro keeps working for 7 days. When a subscription ends, the app returns to the Free plan and keeps your settings.
+When a subscription ends, the app returns to the Free plan and keeps your settings.
 
 ## Not a replacement for Zabbix alerting
 
@@ -51,4 +51,4 @@ We may update these terms. We'll publish the new version on this page with a new
 
 ## Contact
 
-Questions about these terms: [open an issue](https://github.com/alexmontoanelli/zabbix-toolbar-site/issues). For billing, contact Polar through the customer portal.
+Questions about these terms: [open an issue](https://github.com/alexmontoanelli/zabbix-toolbar-site/issues). For billing and refunds, contact Apple through your App Store account.

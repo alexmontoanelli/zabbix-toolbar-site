@@ -1,6 +1,6 @@
 ---
 title: Free and Pro
-description: What each plan includes, how to subscribe, activate and manage your license.
+description: What each plan includes, the free trial, and how to subscribe, restore and cancel Pro.
 order: 6
 ---
 
@@ -16,21 +16,23 @@ order: 6
 | Minimum severity per server | | ✓ |
 | Alerts and sounds per severity | | ✓ |
 
-Pro is a subscription — $4.99 per month or $49.90 per year — and each license works on up to 2 Macs at the same time.
+Pro is an App Store subscription, monthly or yearly, with a 7-day free trial. It works on every Mac signed in with the same Apple ID.
 
-## Subscribe and activate
+## Subscribe
 
-1. Open **Settings → License** and click **Subscribe to Pro** (or use [Get Pro](/#pricing) on this site). Checkout is handled by Polar; choose monthly or yearly there.
-2. Your license key arrives by email.
-3. Paste it in **License key** and click **Activate**.
+1. Open **Settings → Pro**.
+2. Choose monthly or yearly and click **Start Free Trial** (or **Subscribe** if you already used the trial).
+3. Confirm the purchase with your Apple ID. Pro turns on right away.
 
-The License pane then shows when the subscription **Renews on** and which Mac it was **Activated on**. **Check now** verifies the license immediately; **Manage subscription** opens the customer portal, where you can update payment details, switch plans or cancel.
+When Pro is active, **Settings → Pro** shows your **Plan** and when it **Renews or ends on**.
 
-## Moving to another Mac
+## Another Mac, or a reinstall
 
-A license works on 2 Macs at the same time. To free a slot, click **Deactivate on this Mac** on the Mac you no longer use. You'll need your license key to activate again.
+Sign in with the same Apple ID and click **Restore Purchases** in **Settings → Pro**.
 
-## Offline and cancellation
+## Cancel or get a refund
 
-- The app checks the license once a day. If it can't reach the license server, Pro keeps working for 7 days, and the License pane shows until when.
-- When a subscription ends, the app notifies you and goes back to Free. Your settings are kept; one server stays monitored, and you can pick which one with **Monitor this server instead**. Subscribe again to turn Pro features back on.
+- **Manage Subscription** in **Settings → Pro** opens your App Store subscriptions, where you can switch plans or cancel. Pro stays active until the end of the period you paid for.
+- Refunds are handled by Apple at [reportaproblem.apple.com](https://reportaproblem.apple.com).
+
+When a subscription ends, the app notifies you and goes back to Free. Your settings are kept; one server stays monitored, and you can pick which one with **Monitor this server instead**.

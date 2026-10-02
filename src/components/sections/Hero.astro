@@ -3,12 +3,9 @@ import MenuBar from '../mockups/MenuBar.astro';
 import ProblemList from '../mockups/ProblemList.astro';
 import { demoServers, newProblem, totalActive } from '../../data/demo';
 import { site } from '../../data/site';
-import { formatSize, type AppcastRelease } from '../../lib/appcast';
 
-interface Props { release: AppcastRelease | null }
-const { release } = Astro.props;
 const servers = demoServers.map((server, index) => (index === 0 ? { ...server, problems: [newProblem, ...server.problems] } : server));
-const facts = [release && `v${release.version}`, release?.size && formatSize(release.size), 'Notarized by Apple'].filter(Boolean).join(' · ');
+const facts = `v${site.version} · Free on the Mac App Store · ${site.pricing.trialDays}-day free trial of Pro`;
 ---
 <section class="hero">
   <div class="container grid">
@@ -20,7 +17,7 @@ const facts = [release && `v${release.version}`, release?.size && formatSize(rel
         with native notifications, quick acknowledgements and nothing to install on the server.
       </p>
       <div class="ctas">
-        <a class="btn btn-primary btn-lg" href={site.links.download}>Download for Mac — free</a>
+        <a class="btn btn-primary btn-lg" href={site.links.appStore}>Download on the Mac App Store</a>
         <a class="btn btn-secondary btn-lg" href="/#pricing">Get Pro</a>
       </div>
       <p class="muted facts">{facts}</p>

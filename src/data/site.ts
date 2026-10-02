@@ -5,24 +5,24 @@ export const site = {
   author: 'Alex Montoanelli',
   requirements: 'macOS 14 Sonoma or later',
   zabbixVersions: 'Zabbix 6.0 to 7.x',
+  /** Versão publicada na Mac App Store — atualizar a cada release. */
+  version: '1.1.0',
   links: {
-    download: 'https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases/latest/download/ZabbixToolbar.dmg',
-    releases: 'https://github.com/alexmontoanelli/zabbix-toolbar-releases/releases',
-    checkout: 'https://buy.polar.sh/polar_cl_oHEp0FaJZ2JHeXFl0G66RCOCTOw8G2eT86DW94PknvV',
-    customerPortal: 'https://polar.sh/zabbixtoolbar/portal',
+    appStore: 'https://apps.apple.com/app/id6818347240',
+    manageSubscriptions: 'https://apps.apple.com/account/subscriptions',
     support: 'https://github.com/alexmontoanelli/zabbix-toolbar-site/issues',
-    appcast: 'https://alexmontoanelli.github.io/zabbix-toolbar-releases/appcast.xml',
-    polarTerms: 'https://polar.sh/legal/terms',
-    polarPrivacy: 'https://polar.sh/legal/privacy',
+    appleEula: 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/',
+    applePrivacy: 'https://www.apple.com/legal/privacy/',
+    reportAProblem: 'https://reportaproblem.apple.com',
     githubPrivacy: 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement',
     aptabase: 'https://aptabase.com',
   },
-  // Mesmos valores de App/PolarConfig.swift (monthlyPrice/yearlyPrice) — mudar os dois juntos.
+  // Referência em USD; o preço local vem da App Store. Manter igual ao App Store Connect.
   pricing: {
     monthly: { price: '$4.99', amount: '4.99' },
-    yearly: { price: '$49.90', amount: '49.90', note: '2 months free' },
+    yearly: { price: '$49.99', amount: '49.99', note: '2 months free' },
+    trialDays: 7,
     currency: 'USD',
-    maxMacs: 2,
-    offlineGraceDays: 7,
+    note: 'Prices in USD; your local App Store price may differ.',
   },
 } as const;

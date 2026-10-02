@@ -16,7 +16,7 @@ export const faq: FaqItem[] = [
   },
   {
     q: 'What data leaves my Mac?',
-    a: `Nothing about your Zabbix servers: addresses, hosts, problems and credentials stay on your Mac, and the app talks directly to your Zabbix. The app sends a few anonymous usage events (you can turn them off), license checks to Polar and a daily update check. Details in the <a href="/privacy/">Privacy Policy</a>.`,
+    a: `Nothing about your Zabbix servers: addresses, hosts, problems and credentials stay on your Mac, and the app talks directly to your Zabbix. The app sends a few anonymous usage events, which you can turn off, and purchases go through the App Store. Details in the <a href="/privacy/">Privacy Policy</a>.`,
     short: true,
   },
   {
@@ -25,18 +25,18 @@ export const faq: FaqItem[] = [
     short: true,
   },
   {
-    q: 'How many Macs can use one license?',
-    a: `Up to ${site.pricing.maxMacs} Macs at the same time. To move a license, open Settings → License → Deactivate on this Mac on the old one.`,
+    q: 'How many Macs can use Pro?',
+    a: 'Pro is an App Store subscription, so it works on every Mac signed in with the same Apple ID.',
     short: true,
   },
   {
     q: 'What happens if I cancel?',
-    a: 'Pro stays active until the end of the period you paid for. Then the app goes back to Free and keeps all your settings; one server stays monitored, and you choose which one.',
+    a: 'Cancel anytime in your App Store account. Pro stays active until the end of the period you paid for. Then the app goes back to Free and keeps all your settings; one server stays monitored, and you choose which one.',
     short: true,
   },
   {
     q: 'Does it work offline?',
-    a: `Yes. Monitoring only needs your Zabbix server. If the app can’t reach the license server, Pro keeps working for ${site.pricing.offlineGraceDays} days.`,
+    a: 'Yes. Monitoring only needs your Zabbix server, and your Pro subscription is verified on your Mac from the App Store records, without contacting us.',
     short: true,
   },
   {
@@ -49,11 +49,11 @@ export const faq: FaqItem[] = [
   },
   {
     q: 'How do updates work?',
-    a: 'The app checks for updates once a day and asks before installing. You can also check any time in Settings → General → Updates → Check Now. Every version is signed and notarized by Apple.',
+    a: 'Through the Mac App Store, like any other app. Turn on automatic updates in App Store settings to always have the latest version.',
   },
   {
     q: 'How do refunds work?',
-    a: `Purchases are processed by <a href="https://polar.sh">Polar</a>, our merchant of record, which handles billing, taxes and refunds under its <a href="${site.links.polarTerms}">terms</a>. You can manage or cancel your subscription in the <a href="${site.links.customerPortal}">customer portal</a>.`,
+    a: `Purchases are made through the App Store, so Apple handles billing and refunds. Request a refund at <a href="${site.links.reportAProblem}">reportaproblem.apple.com</a>, and manage or cancel your subscription in <a href="${site.links.manageSubscriptions}">your App Store account</a>.`,
   },
   {
     q: 'Is this an official Zabbix product?',
