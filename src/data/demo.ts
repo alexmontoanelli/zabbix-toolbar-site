@@ -5,7 +5,8 @@ export interface DemoProblem {
   name: string;
   hosts: string[];
   severity: Severity;
-  started: string;
+  /** Há quanto tempo o problema começou (segundos): o início é calculado a partir de agora. */
+  ageSeconds: number;
   duration: string;
   groups: string[];
   ackedInZabbix?: boolean;
@@ -42,7 +43,7 @@ export const newProblem: DemoProblem = {
   name: 'MySQL: Replication lag is too high (over 30s)',
   hosts: ['db-prod-02'],
   severity: 'high',
-  started: '10/01, 2:32 PM',
+  ageSeconds: 0,
   duration: '<1m',
   groups: ['Databases', 'Production'],
 };
@@ -51,16 +52,16 @@ export const demoServers: DemoServer[] = [
   {
     name: 'Production',
     problems: [
-      { id: 'p1', name: 'Zabbix agent is not available (for 3m)', hosts: ['db-prod-01'], severity: 'disaster', started: '10/01, 2:28 PM', duration: '4m', groups: ['Databases', 'Production'] },
-      { id: 'p2', name: 'High CPU utilization (over 90% for 5m)', hosts: ['api-gw-02'], severity: 'high', started: '10/01, 1:55 PM', duration: '37m', groups: ['Linux servers', 'Production'] },
-      { id: 'p3', name: 'Disk space is low (used > 80%)', hosts: ['fs-backup-01'], severity: 'average', started: '10/01, 9:12 AM', duration: '5h 20m', groups: ['Storage'], ackedInZabbix: true },
-      { id: 'p4', name: 'Interface eth1: High bandwidth usage', hosts: ['edge-rtr-01'], severity: 'warning', started: '09/30, 10:40 PM', duration: '15h 52m', groups: ['Network'], seen: true },
+      { id: 'p1', name: 'Zabbix agent is not available (for 3m)', hosts: ['db-prod-01'], severity: 'disaster', ageSeconds: 240, duration: '4m', groups: ['Databases', 'Production'] },
+      { id: 'p2', name: 'High CPU utilization (over 90% for 5m)', hosts: ['api-gw-02'], severity: 'high', ageSeconds: 2220, duration: '37m', groups: ['Linux servers', 'Production'] },
+      { id: 'p3', name: 'Disk space is low (used > 80%)', hosts: ['fs-backup-01'], severity: 'average', ageSeconds: 19200, duration: '5h 20m', groups: ['Storage'], ackedInZabbix: true },
+      { id: 'p4', name: 'Interface eth1: High bandwidth usage', hosts: ['edge-rtr-01'], severity: 'warning', ageSeconds: 57120, duration: '15h 52m', groups: ['Network'], seen: true },
     ],
   },
   {
     name: 'Staging',
     problems: [
-      { id: 's1', name: 'Service nginx has been restarted', hosts: ['web-stg-03'], severity: 'information', started: '10/01, 2:20 PM', duration: '12m', groups: ['Staging', 'Web'] },
+      { id: 's1', name: 'Service nginx has been restarted', hosts: ['web-stg-03'], severity: 'information', ageSeconds: 720, duration: '12m', groups: ['Staging', 'Web'] },
     ],
   },
 ];

@@ -2,6 +2,7 @@
 import '../../styles/mockups.css';
 import Glyph from './Glyph.astro';
 import { severityLabel, severityVar, type DemoProblem } from '../../data/demo';
+import { formatStarted, startedAt } from '../../lib/clock';
 
 interface Props { problem: DemoProblem; density: 'compact' | 'extended'; isNew?: boolean; highlighted?: boolean }
 const { problem, density, isNew = false, highlighted = false } = Astro.props;
@@ -22,7 +23,7 @@ const compactTitle = hosts ? `${hosts} — ${problem.name}` : problem.name;
         {hosts && <span class="host">{hosts}</span>}
         {hosts && <span>·</span>}
         <span>{severityLabel[problem.severity]}</span><span>·</span>
-        <span>{problem.started}</span><span>·</span>
+        <span data-live-started={problem.ageSeconds}>{formatStarted(startedAt(new Date(), problem.ageSeconds))}</span><span>·</span>
         <span>{problem.duration}</span>
         {problem.ackedInZabbix && <Glyph name="seal" />}
       </div>

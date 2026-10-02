@@ -2,6 +2,7 @@
 import '../../styles/mockups.css';
 import Glyph from './Glyph.astro';
 import ZIcon from './ZIcon.astro';
+import { formatMenuBarClock } from '../../lib/clock';
 
 interface Props { count: number; countFrom?: number }
 const { count, countFrom } = Astro.props;
@@ -10,7 +11,7 @@ const { count, countFrom } = Astro.props;
   <span class="item active"><ZIcon state="alert" count={count} countFrom={countFrom} /></span>
   <span class="item"><Glyph name="wifi" /></span>
   <span class="item"><Glyph name="battery" /></span>
-  <span class="item clock">Thu Oct 1 2:32 PM</span>
+  <span class="item clock" data-live-clock>{formatMenuBarClock(new Date())}</span>
 </div>
 
 <style>

@@ -53,5 +53,19 @@ const ldBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    <script>
+      // Mockups ao vivo: relógio da barra de menus e início dos problemas no fuso do visitante.
+      import { formatMenuBarClock, formatStarted, startedAt } from '../lib/clock';
+
+      function update() {
+        const now = new Date();
+        for (const el of document.querySelectorAll<HTMLElement>('[data-live-clock]')) el.textContent = formatMenuBarClock(now);
+        for (const el of document.querySelectorAll<HTMLElement>('[data-live-started]')) {
+          el.textContent = formatStarted(startedAt(now, Number(el.dataset.liveStarted)));
+        }
+      }
+      update();
+      setInterval(update, 15_000);
+    </script>
   </body>
 </html>
