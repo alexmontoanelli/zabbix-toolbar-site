@@ -35,11 +35,6 @@ export const faq: FaqItem[] = [
     short: true,
   },
   {
-    q: 'Does it work offline?',
-    a: 'Yes. Monitoring only needs your Zabbix server, and your Pro subscription is verified on your Mac from the App Store records, without contacting us.',
-    short: true,
-  },
-  {
     q: 'Do I need to install anything on the Zabbix server?',
     a: 'No. The app uses the standard Zabbix API. To acknowledge, close or change severity from the app, the Zabbix user (or the token’s user) needs permission to do that in Zabbix.',
   },
