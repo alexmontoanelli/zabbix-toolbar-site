@@ -1,0 +1,214 @@
+---
+import Base from '../../layouts/Base.astro';
+import MenuBar from '../../components/mockups/MenuBar.astro';
+import ProblemList from '../../components/mockups/ProblemList.astro';
+import { demoServers, totalActive } from '../../data/demo';
+import { site } from '../../data/site';
+
+const title = 'I got tired of missing Zabbix alerts, so I built a menu bar app';
+const description =
+  'Several Zabbix servers, a browser tab for each, and host groups full of problems that weren’t mine. Why I built Zabbix Toolbar, and what was hard about it.';
+const published = '2026-10-01';
+const url = `${site.url}/blog/why-i-built-zabbix-toolbar/`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: published,
+  author: { '@type': 'Person', name: site.author },
+  image: `${site.url}/blog/why-i-built-zabbix-toolbar.png`,
+  mainEntityOfPage: url,
+};
+---
+<Base title={title} description={description} jsonLd={jsonLd} ogImage="/blog/why-i-built-zabbix-toolbar.png" ogType="article">
+  <article class="container post">
+    <header>
+      <p class="eyebrow">Story</p>
+      <h1>{title}</h1>
+      <p class="meta muted">By {site.author} · <time datetime={published}>October 1, 2026</time> · 6 min read</p>
+    </header>
+
+    <div class="prose">
+      <p class="lede">
+        If you work with Zabbix, you probably know the setup: one browser tab per Zabbix server, a dashboard you
+        refresh out of habit, and alert emails that stopped meaning anything a long time ago. This is the story of
+        why I got rid of all that and built a tiny app that lives in my Mac’s menu bar.
+      </p>
+
+      <h2>Too many servers, too many tabs</h2>
+      {/* EDIT: troque/complete com a sua história real (tipo de ambiente, quantos servidores, o incidente que motivou). */}
+      <p>
+        I don’t watch one Zabbix. I watch several: production on one server, staging on another, a few environments
+        that belong to other teams, and an older installation nobody wants to touch. Each one has its own frontend,
+        its own login and its own browser tab.
+      </p>
+      <p>
+        The tab I needed was never the one I had open. Sessions expired at the worst moment. And with my browser
+        full of tabs, “keeping an eye on Zabbix” really meant remembering to click through all of them every now
+        and then. Sooner or later, I didn’t.
+      </p>
+      <p>
+        Then there are host groups. On a shared Zabbix you see everyone’s problems: the network team’s switches, the
+        database replicas, the test machines someone forgot to turn off. The few problems that were actually
+        mine drowned in a list of things I couldn’t act on.
+      </p>
+      <p>
+        Notifications didn’t save me either. Alert emails got a filter, then a folder, then I stopped opening the
+        folder. The chat channel got muted. The irony of monitoring is that the more it tells you, the less you
+        listen.
+      </p>
+
+      <h2>What I actually wanted</h2>
+      <p>I wanted to glance at one place and know, in a second, whether something needed me. Specifically:</p>
+      <ul>
+        <li><strong>All my Zabbix servers together</strong>, without a tab for each one.</li>
+        <li><strong>Only what matters to me</strong>: my host groups, my severities, nothing else.</li>
+        <li><strong>Somewhere I already look</strong>, without switching context.</li>
+        <li><strong>A notification only when something is actually new.</strong></li>
+      </ul>
+      <p>
+        On a Mac, that place is the menu bar. It’s always visible, and it already shows the clock, Wi-Fi and battery.
+        A small “Z” turning red with a number next to it is exactly the amount of information I need, until I need
+        more.
+      </p>
+
+      <figure class="shot" role="img" aria-label="The menu bar icon showing 4 problems and the list grouped by server: Production and Staging.">
+        <div class="desktop">
+          <MenuBar count={totalActive(demoServers)} />
+          <div class="pop"><ProblemList servers={demoServers} density="compact" /></div>
+        </div>
+        <figcaption>One icon for every server. Click it to see every active problem, grouped by server.</figcaption>
+      </figure>
+
+      <p>
+        So I built <a href="/">Zabbix Toolbar</a>. A red “Z” means something needs me. Click it, and every active
+        problem from every server is there, grouped by server. Click a problem and the event opens in Zabbix. Host
+        groups I don’t care about are filtered out everywhere: list, icon and notifications.
+      </p>
+
+      <h2>The hard parts</h2>
+      <p>
+        The idea fits in a sentence. Making it something I’d trust during an incident took longer than I expected.
+      </p>
+
+      <h3>Deciding what “needs me” means</h3>
+      <p>
+        A problem in Zabbix isn’t simply “on” or “off”. Someone may have already acknowledged it. It may belong to a
+        group I ignore. It may be low severity on a server where I only care about disasters. And I may have already
+        seen it myself without wanting to touch it in Zabbix, where acknowledgements are a signal to the whole team.
+      </p>
+      <p>
+        I ended up separating two ideas that the web frontend mixes together: <em>I’ve seen this</em> (only on my
+        Mac) and <em>I’m acknowledging this</em> (in Zabbix, for everyone). Each server gets to decide which one the
+        checkmark means, because a shared production server and my own lab deserve different habits.
+      </p>
+
+      <h3>Not becoming the noise I was escaping</h3>
+      <p>
+        The first version notified me about everything it found. Opening the laptop in the morning meant a pile of
+        notifications for problems that had been there all night. That’s exactly the alert fatigue I was trying to
+        get away from.
+      </p>
+      <p>
+        So the rules got stricter. Problems that already exist when the app starts are counted, not announced.
+        Several new problems at once produce one sound, not a chorus. A problem I snooze comes back later
+        <em>quietly</em>. And each severity can have its own sound, or none: a disaster should sound like one, a
+        warning can wait.
+      </p>
+
+      <h3>Every Zabbix is a little different</h3>
+      <p>
+        The servers I watch don’t all run the same version, and they never will. Some are recent, some are years
+        old, some live on internal networks with certificates no browser trusts. The app had to treat them all the
+        same way, so that I don’t have to think about which server is which. Most of the testing time went here,
+        against real servers, not into the interface.
+      </p>
+
+      <h3>Earning trust</h3>
+      <p>
+        An app that holds the keys to your monitoring has to be boringly trustworthy. Credentials stay in the macOS
+        Keychain. The app talks only to your Zabbix servers: hostnames, problems and server addresses never leave
+        your Mac. The anonymous usage statistics can be turned off with one switch, and the
+        <a href="/privacy/">privacy policy</a> lists exactly what they contain. The app is sandboxed, reviewed by Apple
+        and distributed through the Mac App Store, so installing it doesn’t feel like a risk.
+      </p>
+
+      <h3>The other 80%</h3>
+      <p>
+        Building the app for myself took a few evenings. Making it something other people can install took much
+        longer: documentation, getting through App Store review, a website, a privacy policy, a release process I can run without
+        thinking. None of it is visible in a screenshot, and all of it is the difference between a side project and
+        something you can recommend to a colleague.
+      </p>
+
+      <h2>Building it with an AI pair</h2>
+      <p>
+        I built Zabbix Toolbar with an AI coding assistant (Claude Code) next to me the whole time, and I want to
+        be honest about how that went.
+      </p>
+      <p>
+        It made the work go much faster: the interface, the tests, the release script, this website and its docs. It
+        even wrote a small check that makes sure every button name mentioned in the docs actually exists in the app.
+      </p>
+      <p>
+        What it didn’t do is decide. What counts as “needs me”, how quiet the app should be, what stays on the Mac:
+        those were my calls, and they’re what make the app useful. It also made mistakes, sometimes confidently,
+        including running a command one folder too high and touching files outside the project. Working in small
+        steps, with a written plan, tests before code and a separate review at the end, is what kept those
+        mistakes small and easy to catch.
+      </p>
+      <p>
+        My takeaway: an AI pair is a multiplier on judgment, not a substitute for it. The product decisions are still
+        yours, and so is checking the work.
+      </p>
+
+      <h2>Where it is now</h2>
+      <p>
+        Zabbix Toolbar runs on macOS 14 Sonoma or later and works with Zabbix 6.0 through 7.x. It’s the first thing I
+        look at when I sit down, and the Zabbix tabs are finally closed.
+      </p>
+      {/* EDIT: se quiser, conte o que vem a seguir (ideias, pedidos de usuários). */}
+      <p>
+        If you watch more than one Zabbix, or one Zabbix with too many host groups, give it a try and tell me what’s
+        missing. Ideas and bug reports are welcome on <a href={site.links.support}>GitHub</a>.
+      </p>
+    </div>
+
+    <aside class="cta">
+      <img src="/icon-512.png" width="64" height="64" alt="" loading="lazy" />
+      <div>
+        <p class="cta-title">Zabbix Toolbar</p>
+        <p class="muted">Your Zabbix problems, one click away in the menu bar. {site.requirements}.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href={site.links.appStore}>Get it on the Mac App Store</a>
+        <a class="btn btn-secondary" href="/">Learn more</a>
+      </div>
+    </aside>
+  </article>
+</Base>
+
+<style>
+  .post { max-width: 800px; padding-top: 56px; padding-bottom: 56px; }
+  header { margin-bottom: 32px; }
+  h1 { font-size: clamp(2rem, 4.6vw, 3rem); }
+  .meta { margin: 0; }
+  .prose { max-width: none; }
+  .prose h2 { margin-top: 2.2em; }
+  .shot { margin: 32px 0; }
+  .desktop { background: var(--mk-desktop); border-radius: 18px; padding: 0 0 24px; box-shadow: var(--shadow); }
+  .pop { display: flex; justify-content: flex-end; padding: 8px 14px 0; }
+  figcaption { margin-top: 12px; font-size: 0.9rem; color: var(--text-3); text-align: center; }
+  @media (max-width: 480px) { .pop { padding: 8px 8px 0; } .desktop { padding-bottom: 12px; } }
+  .cta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 18px;
+    margin-top: 56px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-elev);
+  }
+  .cta img { border-radius: 14px; }
+  .cta > div:first-of-type { flex: 1; min-width: 200px; }
+  .cta p { margin: 0; }
+  .cta-title { font: 700 1.15rem var(--font-display); }
+  .cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+</style>

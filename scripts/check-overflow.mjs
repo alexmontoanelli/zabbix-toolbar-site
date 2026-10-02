@@ -11,7 +11,7 @@ const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/M
 const base = process.argv[2] ?? 'http://localhost:4321';
 const PORT = 9333;
 const WIDTH = 375;
-const pages = ['/', '/docs/', '/docs/problem-list/', '/docs/acknowledge-and-snooze/', '/docs/alerts/', '/docs/servers/', '/docs/license/', '/docs/updates/', '/docs/troubleshooting/', '/faq/', '/privacy/', '/terms/', '/nao-existe/'];
+const pages = ['/', '/docs/', '/docs/problem-list/', '/docs/acknowledge-and-snooze/', '/docs/alerts/', '/docs/servers/', '/docs/license/', '/docs/updates/', '/docs/troubleshooting/', '/faq/', '/privacy/', '/terms/', '/blog/why-i-built-zabbix-toolbar/', '/nao-existe/'];
 
 const profile = mkdtempSync(join(tmpdir(), 'chrome-'));
 const chrome = spawn(CHROME, ['--headless=new', '--disable-gpu', `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`, 'about:blank'], { stdio: 'ignore' });
