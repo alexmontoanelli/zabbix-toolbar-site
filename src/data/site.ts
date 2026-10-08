@@ -6,7 +6,7 @@ export const site = {
   requirements: 'macOS 14 Sonoma or later',
   zabbixVersions: 'Zabbix 6.0 to 7.x',
   /** Versão publicada na Mac App Store — atualizar a cada release. */
-  version: '1.1.0',
+  version: '1.2.0',
   links: {
     appStore: 'https://apps.apple.com/app/id6818347240',
     manageSubscriptions: 'https://apps.apple.com/account/subscriptions',
